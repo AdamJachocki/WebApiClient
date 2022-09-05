@@ -1,0 +1,19 @@
+﻿@page
+@model WebApp.Pages.AddClientPageModel
+
+<h3>Dodaj nowego klienta</h3>
+<hr />
+@if(!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="bg-warning p-3">
+        Nie można było dodać klienta, błąd: @Model.Error
+    </div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="name">Nazwisko</label>
+        <input type="text" id="name" asp-for="ClientData.Name"/>
+    </div>
+    <input type="submit" class="btn btn-primary mt-3" asp-page-handler="AddClient" value="Dodaj" />
+</form>

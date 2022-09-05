@@ -1,0 +1,45 @@
+﻿@page
+@model WebApp.Pages.ClientListModel
+
+<h3>Lista klientów</h3>
+<hr />
+
+@if(!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <div class="bg-warning">
+        Wystąpił błąd: @Model.Error
+    </div>
+}
+
+@if(!string.IsNullOrWhiteSpace(Model.Info))
+{
+    <div class="bg-info">
+        @Model.Info
+    </div>
+}
+
+@if(Model.List.Count == 0)
+{
+    <p>Nie ma klientów</p>
+}else
+{
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nazwisko</td>
+                <td>&nbsp;</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model.List)
+            {
+                <tr>
+                    <td>@client.Id</td>
+                    <td>@client.Name</td>
+                    <td><a asp-page-handler="delete" asp-route-id="@client.Id">Usuń</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
